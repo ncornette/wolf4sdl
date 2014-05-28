@@ -178,9 +178,9 @@ void ControlMovement (objtype *ob)
         if(angle >= ANGLES)
             angle -= ANGLES;
         if(buttonstate[bt_run])
-            Thrust(angle, RUNMOVE * MOVESCALE * tics);
+            Thrust(angle, RUNMOVE * MOVESCALE * tics * 0.6f);
         else
-            Thrust(angle, BASEMOVE * MOVESCALE * tics);
+            Thrust(angle, BASEMOVE * MOVESCALE * tics * 0.6f);
     }
 
     if(buttonstate[bt_straferight])
@@ -189,9 +189,9 @@ void ControlMovement (objtype *ob)
         if(angle < 0)
             angle += ANGLES;
         if(buttonstate[bt_run])
-            Thrust(angle, RUNMOVE * MOVESCALE * tics );
+            Thrust(angle, RUNMOVE * MOVESCALE * tics * 0.6f);
         else
-            Thrust(angle, BASEMOVE * MOVESCALE * tics);
+            Thrust(angle, BASEMOVE * MOVESCALE * tics * 0.6f);
     }
 
     //

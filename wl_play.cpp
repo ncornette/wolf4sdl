@@ -308,6 +308,28 @@ void PollJoystickButtons (void)
 /*
 ===================
 =
+= PollKeyboardMoveStrafe
+=
+===================
+*/
+
+void PollKeyboardMoveStrafe (void)
+{
+    int delta = buttonstate[bt_run] ? RUNMOVE * tics : BASEMOVE * tics;
+
+    if (Keyboard[dirscan[di_north]])
+        controly -= delta;
+    if (Keyboard[dirscan[di_south]])
+        controly += delta;
+    if (Keyboard[dirscan[di_west]])
+        buttonstate[bt_strafeleft] = true;
+    if (Keyboard[dirscan[di_east]])
+        buttonstate[bt_straferight] = true;
+}
+
+/*
+===================
+=
 = PollKeyboardMove
 =
 ===================
@@ -464,7 +486,10 @@ void PollControls (void)
 //
 // get movements
 //
-    PollKeyboardMove ();
+    if (mouseenabled && IN_IsInputGrabbed())
+        PollKeyboardMoveStrafe ();
+    else
+        PollKeyboardMove ();
 
     if (mouseenabled && IN_IsInputGrabbed())
         PollMouseMove ();
